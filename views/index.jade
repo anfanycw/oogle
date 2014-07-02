@@ -1,0 +1,62 @@
+extends layout
+
+block content
+	div#maincontent
+		div.container
+			div.row
+				div.col-md-1
+				div.col-md-10
+					div#searchmain.jumbotron
+						div.row
+							div.col-md-3
+							div.col-md-6
+								h1.indextitle Oogle
+								div.input-group.searchform-main
+									input.form-control#searchbox-main(type="text", placeholder="")
+									span.input-group-btn
+										button.btn.btn-default#searchbtn-main(type="button")
+											span.glyphicon.glyphicon-search
+							div.col-md-3
+				div.col-md-1
+			div#searchres
+				div.row
+					div.col-md-6
+						div.input-group.searchform-top
+							span.input-group-btn
+								button.btn.btn-info#backbtn-top(type="button") Oogle
+							input.form-control#searchbar-top(type="text", placeholder="")
+							span.input-group-btn
+								button.btn.btn-info#searchbtn-top(type="button")
+									span.glyphicon.glyphicon-search
+					div.col-md-6
+				div.row
+					div.col-md-12
+						img#loading(src="/images/ajax-loader.gif")
+						div#results
+							span#emptysearch.label.label-default No Results...
+				div.row
+					div.col-md-4
+						button.btn.btn-primary#statsbtn(type="button", data-toggle="modal", data-target="#statsModal")
+							span.glyphicon.glyphicon-cog
+						div.modal.fade#statsModal(tabindex="-1", role="dialog", aria-labelledby="statsModalLabel", aria-hidden="true")
+							div.modal-dialog
+								div.modal-content
+									div.modal-header
+										button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+										h4.modal-title#statsModalLabel NDCG for "<span class="ndcgtitle"></span>"
+									div.modal-body
+										ul#ndcgpills.nav.nav-pills(style="margin-bottom:15px")
+											li.active
+												a.ndcgpill(name="10", href="#") @10
+											li
+												a.ndcgpill(name="5", href="#") @5
+										div#ndcg
+											img#modalloading(src="/images/ajax-loader.gif")
+									div.modal-footer
+										button.btn.btn-primary(type="button", data-dismiss="modal") Close
+					div.col-md-4
+						div.paginate
+							ul#resultpages.pager
+								li <a name="prev" href="#">&laquo;</a>
+								li <a name="next" href="#">&raquo;</a>
+					div.col-md-4

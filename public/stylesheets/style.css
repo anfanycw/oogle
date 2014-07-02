@@ -1,0 +1,66 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url("../images/bg-right-column.jpg") #eee repeat;
+}
+a {
+  color: #00b7ff;
+}
+.jumbotron {
+  -webkit-box-shadow: 0 0 78px 19px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 0px 78px 19px rgba(0,0,0,0.4);
+  box-shadow: 0px 0px 78px 19px rgba(0,0,0,0.4);
+  margin-top: 15%;
+  background: #dbdbdb;
+/* Old browsers */
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #f1f1f1 0%, #fff 51%, #e1e1e1 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dbdbdb), color-stop(0%, #f1f1f1), color-stop(51%, #fff), color-stop(100%, #e1e1e1));
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #f1f1f1 0%, #fff 51%, #e1e1e1 100%);
+  background: -o-linear-gradient(top, #dbdbdb 0%, #f1f1f1 0%, #fff 51%, #e1e1e1 100%);
+  background: -ms-linear-gradient(top, #dbdbdb 0%, #f1f1f1 0%, #fff 51%, #e1e1e1 100%);
+  background: linear-gradient(to bottom, #dbdbdb 0%, #f1f1f1 0%, #fff 51%, #e1e1e1 100%);
+}
+#results {
+  background-color: #fff;
+  min-height: 500px;
+  margin-top: 20px;
+  border-radius: 5px;
+  overflow-y: scroll;
+  padding: 25px;
+}
+#emptysearch {
+  position: relative;
+  top: 140px;
+  left: 42%;
+}
+#searchres {
+  display: none;
+}
+.indextitle {
+  background: -webkit-linear-gradient(#ccc, #27408b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  height: 75px;
+  text-align: center;
+}
+.paginate {
+  text-align: center;
+}
+#resultpages li a[name="next"] {
+  margin-left: 10px;
+}
+.panel-heading a {
+  color: #4169e1 !important;
+}
+.panel-hide {
+  display: none;
+}
+#loading {
+  position: absolute;
+  left: 48%;
+  top: 40%;
+}
+#statsbtn {
+  position: relative;
+  top: 15px;
+}

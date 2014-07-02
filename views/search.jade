@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	div#maincontent
+		div.container
+			div.row
+				div.col-lg-6
+					div.input-group.searchform-top
+						span.input-group-btn
+							button.btn.btn-info#backbtn-top(type="button") Oogle
+						input.form-control#searchbar-top(type="text", placeholder="Enter search terms...")
+						span.input-group-btn
+							button.btn.btn-info#searchbtn-top(type="button") Oogle it!
+			div.row
+				div.col-lg-12
+					div#results
+						span#emptysearch.label.label-default No Results...
