@@ -1,3 +1,6 @@
+// Oogle - routes
+// Author: Anthony Wang
+
 var mongo = require('mongodb'),
 	fs = require('fs'),
 	exec = require('child_process').exec,
@@ -29,8 +32,6 @@ exports.stats = function(req, res) {
 			console.error(err);
 
 		for (var i = 0; i < links.length; ++i) {
-			//console.log(links[i].title + ' - ' + links[i].link);
-			//console.log(links[i].description + "\n");
 			retArr.push(links[i].link);
 		}
 
@@ -77,7 +78,8 @@ exports.query = function(req, res) {
 
 			// heuristic: if terms in title or url, then ++
 			console.time("evalTitleURL");
-			evalTitleUrl(terms, q, result, docnums); // (array[terms], terms string, crawl results, index results)
+			// (array[terms], terms string, crawl results, index results)
+			evalTitleUrl(terms, q, result, docnums);
 			console.timeEnd("evalTitleURL");
 
 			// sort weighted array of docs
@@ -126,17 +128,6 @@ function evalTitleUrl(query, qstring, results, weighted) {
 			outlinks = results[r].out;
 		
 		var html = results[r].html.toString();
-		/*var html = results[r].html.toString().replace(/(\r\n|\n|\r|\t)/gm, '');
-		html = html.replace(/\s+/gm, ' ').replace(/<\/h\d>\s?/gm, '.').toString();
-		if (doc_id == 334)
-			//console.log(html);
-		html = html.replace('/<script[\w\S\s\W]+?<\/script>/gm', '').replace(/<head[\w\S\s\W]+?<\/head>/gm, '').toString();
-		html = html.replace('/<script\b[^>]*>(.*)<\/script>/gm', '');
-		if (doc_id == 334)
-			console.log(html);
-		html = html.replace(/<([\S+\s+\/\w\d]+?|\w+?)>/gm, ' ').replace(/\s+/gm, ' ');
-		//*/
-
 		var text = results[r].text.replace(/(\r\n|\n|\r|\t|\s)+/gm, ' '),
 			snippet = "[No preview available]",
 			score = 0;
@@ -144,7 +135,7 @@ function evalTitleUrl(query, qstring, results, weighted) {
 		// additional weighting
 		if (title != null && url != null && inlinks != null 
 			&& outlinks != null && html != null) {
-			// trim urls .. not entirely necessary
+			// trim urls
 			url = url.toString().toLowerCase();
 			title = title.toString().toLowerCase();
 
@@ -161,16 +152,12 @@ function evalTitleUrl(query, qstring, results, weighted) {
 
 			// prepare snippet for preview
 			var str = qstring.split(' ').join("|");
-			//var patt = "[^.!?]([\w\S]+\s+){11}";
 			var patt = "[^.!?\\&\\'#\\-:<>\\(\\)\\[\\]0-9][\\\"\\(\\)\\/,;\\&\\:\\#'\\-<>\\w\\s0-9]*("+str+")[\\\"\\(\\)\\/,;\\:\\#'\\-<>\\w\\s0-9]*[.?!]";
 			var reg = new RegExp(patt,"gm");
 			var snipout = text.match(reg);
-			//if (doc_id == 334) {
-				//console.log("--- snipout ---");
-				//console.log(html);
-			//}
+
 			if (snipout) {
-				snippet = snipout[0];//.replace(/<([\'\"\/\w\d]+?|\w+?)>/g, ' ');
+				snippet = snipout[0];
 				results[r].snippet = snippet;
 			}//*/
 
@@ -185,9 +172,7 @@ function evalTitleUrl(query, qstring, results, weighted) {
 				// + for html <h#>text</h> matches and <a href>text</a> matches
 				var count = 0;
 				var hreg = new RegExp("<h[1-2]>(.*?)<\/h[1-2]>", "g");
-				//var areg = new RegExp("<(a|A)\\s(href|HREF)=\".*?\">(.*?)<\/(a|A)>", "g");
 				var out1 = html.match(hreg);
-				//var out2 = html.match(areg);
 				if (out1) {
 					out1 = out1.join().split(" "+query[q]+" ").length;
 					if (out1 > 1)
@@ -199,13 +184,9 @@ function evalTitleUrl(query, qstring, results, weighted) {
 				var patt3 = "[^.!?;:,'\\\"]((?:(\\S+\\s+){1,10})\\w+)";
 				var reg3 = new RegExp(patt3,"g");
 				var snipout3 = text.match(reg3);
-				/*if (doc_id == 344) {
-					console.log("--- snipout3 ---");
-					console.log(snipout3);
-				}//*/
 				if (snipout3)
 					results[r].snippet = snipout3[Math.floor(snipout3.length/2)];
-			}//*/
+			}
 
 			// mark up for index pages ("authority")
 			var reghome = new RegExp(".*(index|home)\.(html|htm|php)$", "g");
@@ -302,11 +283,6 @@ function checkPositions(posArrs) {
 
 // FOR DEBUGGING ONLY
 function selectDoc(docnums, doclist) {
-	// student affairs
-	//var array = [7, 334, 217, 238, 181, 264, 227, 256, 53, 185, 498];
-	// machine learning
-	//var array = [218, 1739 ,1733];
-	// AI
 	var array = [27178, 33329, 13475, 99, 1472];
 	if (docnums) {
 		for (var d in docnums) {

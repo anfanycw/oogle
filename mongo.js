@@ -1,3 +1,6 @@
+// Oogle - mongodb
+// Author: Anthony Wang
+
 var Db = require('mongodb').Db,
 	Connection = require('mongodb').Connection,
 	Server = require('mongodb').Server,

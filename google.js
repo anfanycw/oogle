@@ -1,7 +1,7 @@
 // NODE JS script to fetch google top 10
 
-// Anthony Wang
-// Ivan Leung
+// Author: Anthony Wang
+//		   Ivan Leung
 
 var google = require('google');
 

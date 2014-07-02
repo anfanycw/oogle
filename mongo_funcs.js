@@ -1,4 +1,4 @@
-// MAP-REDUCE for mongo
+// MAP-REDUCE for index creation
 // authors: Anthony Wang
 //          Ivan Leung
 

@@ -1,3 +1,5 @@
+// Author: Anthony Wang
+
 $(function() {
 	
 	var addr = window.location.origin,
@@ -138,7 +140,9 @@ $(function() {
 		}
 	});
 
-	/*// on oogleit button main page - not needed for now
+	/*
+
+	// on oogleit button main page - not needed for now
 	$('#searchbox-main')
 	.keypress(function(event) {
 		var text = $('#searchbox-main').val();
@@ -148,7 +152,9 @@ $(function() {
 				clickFunc('search-main', text);
 			}
 		}
-	});	*/
+	});	
+
+	*/
 
 	function search(terms) {
 		$('#loading').show();
@@ -204,9 +210,6 @@ $(function() {
 											'<div class="panel-heading"><a target="_blank" href="#">'+title+'</a></div>'+
 											'<div class="panel-body">'+
 												'<font color="#999">URL: '+url+'</font><br/>'+
-												//'Weight: '+weight+'<br/>'+
-												//'Doc #: '+doc+
-												//'<br/>In: '+inlinks+ ' | Out: '+outlinks+
 												'<br/>'+preview+' ...'+
 											'</div>'+
 										'</div>';
@@ -218,9 +221,6 @@ $(function() {
 											'<div class="panel-heading"><a target="_blank" href="#">'+title+'</a></div>'+
 											'<div class="panel-body">'+
 												'<font color="#999">URL: '+url+'</font><br/>'+
-												//'Weight: '+weight+'<br/>'+
-												//'Doc #: '+doc+
-												//'<br/>In: '+inlinks+ ' | Out: '+outlinks+
 												'<br/>'+preview+' ...'+
 											'</div>'+
 										'</div>';								
